@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+.login-pagina{
+    /* background: linear-gradient(  #4e89ae 30%, #133b5c ); */
+    background: 
+    url("./assets/img/fondoloops.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; 
+
+      height: auto;
+      margin: 0;
+      background-size:cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+  }

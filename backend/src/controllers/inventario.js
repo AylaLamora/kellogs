@@ -1,11 +1,11 @@
 const { Router } = require('express');
 const router = Router();
 let ObjectId = require('mongoose').Types.ObjectId;
-let encuesta  = require('../models/encuesta');
+let inventario  = require('../models/inventario');
 
 router.post('/', async (req, res) => {
 
-    let encuestaModel = new encuesta ({
+    let inventarioModel = new inventario ({
         nombre:req.body.nombre,     
         sexo:req.body.sexo,       
         direccion:req.body.direccion,  
@@ -26,9 +26,9 @@ router.post('/', async (req, res) => {
     });
 
     
-   await encuestaModel.save((err, doc)=>{
+   await inventarioModel.save((err, doc)=>{
         if(!err) {res.send(doc)}
-        else {console.log('Error recibiendo datos del encuestaModel' + JSON.stringify(err, undefined, 2));}
+        else {console.log('Error recibiendo datos del inventarioModel' + JSON.stringify(err, undefined, 2));}
     });
 });
 
@@ -37,7 +37,7 @@ router.put('/:id', (req, res) => {
     if(!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No se encontro la id: ${req.params.id}`);
 
-        let encuestaModel =  ({
+        let inventarioModel =  ({
             nombre:req.body.nombre,     
             sexo:req.body.sexo,       
             direccion:req.body.direccion,  
@@ -58,9 +58,9 @@ router.put('/:id', (req, res) => {
         });
 
     let ID = req.params.id;
-    encuesta.findByIdAndUpdate(ID, {$set: encuestaModel}, {new:true},(err, doc) => {
+    inventario.findByIdAndUpdate(ID, {$set: inventarioModel}, {new:true},(err, doc) => {
         if(!err) {res.send(doc)}
-          else { console.log(`Error en encontrar la encuestaModel: `+ JSON.stringify(err, undefined, 2));}
+          else { console.log(`Error en encontrar la inventarioModel: `+ JSON.stringify(err, undefined, 2));}
 
     })
 })
@@ -69,17 +69,17 @@ router.delete('/:id', (req, res) => {
     if(!ObjectId.isValid(req.params.id))
     return res.status(400).send(`No se encontro la id: ${req.params.id}`);
 
-    encuesta.findByIdAndRemove(req.params.id, (err, doc) => {
+    inventario.findByIdAndRemove(req.params.id, (err, doc) => {
         if(!err) {res.send(doc)}
-          else { console.log(`Error en encontrar el encuestaModele: `+ JSON.stringify(err, undefined, 2));}
+          else { console.log(`Error en encontrar el inventarioModele: `+ JSON.stringify(err, undefined, 2));}
     });
 });
 
 
 router.get('/', (req,res) => {
-    encuesta.find((err,doc) => {
+    inventario.find((err,doc) => {
         if(!err) {res.send(doc)}
-        else {console.log('Error recibiendo datos de encuesta' + JSON.stringify(err, undefined, 2));}
+        else {console.log('Error recibiendo datos de inventario' + JSON.stringify(err, undefined, 2));}
     });
 });
 

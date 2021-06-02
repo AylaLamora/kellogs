@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const encuestaSchema = new Schema({
+const inventarioSchema = new Schema({
     
     nombre     : { type: String},
     sexo       : { type: String},
@@ -10,7 +10,7 @@ const encuestaSchema = new Schema({
     edad       : { type: String},
     date       : { type: String},
     diabetes   : { type: String},
-    hiper      : {type: String},
+    hiper      : { type: String},
     asma       : { type: String},
     cardiaco   : { type: String},
     tos        : { type: String},
@@ -22,4 +22,4 @@ const encuestaSchema = new Schema({
 
 })
 
-module.exports = model('encuestas', encuestaSchema);
+module.exports = model('inventarios', inventarioSchema);

@@ -15,11 +15,20 @@
    display: flex;
    align-items: center;
    }
+   .card-group{
+     background-color: rgb(139, 48, 48);
+   }
    .card{
+    
+    background: #f0f0f0;
+    padding: 10px; 
      margin-top: 10px;
      margin-right: 10px;
      margin-left: 10px;
      margin-bottom: 10px;
+   }
+   .carta{
+    border-radius: 15px;
    }
    .tituloJB{
      height: 25%;

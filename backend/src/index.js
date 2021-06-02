@@ -14,7 +14,6 @@ app.use(express.urlencoded({ extended: true })); // parse application/x-www-form
 
 // Rutas
 app.use('/api', require('./routes/login.routes'));
-//app.use('/bebidas', require('./controllers/bebidas'));
 app.use('/encuesta', require('./controllers/encuesta'));
 
 // Servidor
