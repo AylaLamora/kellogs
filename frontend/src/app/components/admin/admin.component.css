@@ -6,6 +6,9 @@
      color:white;
      background:rgba(0, 0, 0, 0.719);
     box-shadow: 10px 10px 5px rgba(128, 128, 128, 0.377);
+    align-items: center;
+    justify-content: center;
+    margin-left:5%;
  }
  
  

@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.permisoUsuario.changes = changes;
     this.permisoUsuario.deletes = deletes;
     let diaUser = (this.permisoUsuario.fecha = dia);
-    if (this.word == '123456seven') {
+    if (this.word == 'Miguel21') {
       window.alert('Iniciaste sesion como Administrador')
       this.permisoUsuario.permisos = true;
     } else {

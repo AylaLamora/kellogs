@@ -1,12 +1,13 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { FormControl, FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 //Material
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { InventarioService } from 'src/app/services/invetario.service';
 import { DatosInventario } from 'src/app/models/inventario';
+import { formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
@@ -14,6 +15,9 @@ import { DatosInventario } from 'src/app/models/inventario';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+
+  public simpleForm: FormGroup;
+
   /*Cambiar color del fondo*/
   bodyTag: HTMLBodyElement = document.getElementsByTagName('body')[0];
   htmlTag: HTMLElement = document.getElementsByTagName('html')[0];
@@ -26,18 +30,17 @@ export class AdminComponent implements OnInit {
     'actions'
   ];
   dataSource = new MatTableDataSource<DatosInventario>(this.ELEMENT_DATA);
-
+  
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   action = true;
-
-  constructor(public service: InventarioService) { }
+  nuevo = true;
+  constructor(public service: InventarioService) {this.simpleForm =  this.crearFormulario(); }
 
   ngOnInit(): void {
         /*Cambiar color del fondo*/
         this.bodyTag.classList.add('login-pagina');
         this.htmlTag.classList.add('login-pagina');
-
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.getAll();
@@ -46,24 +49,22 @@ export class AdminComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  onSubmit(form: NgForm) {
-    if (form.value.id == '') {
-      this.service.postDatos(form.value).subscribe((res) => {
-        this.getAll();
-        console.log(this.service.selectInventario.nombre);
+  onSubmit() {
+    if (this.simpleForm.value._id == 0) {
+      this.service.postDatos(this.simpleForm.value).subscribe((res) => {
         window.alert('Se Guardo Correctamente');
-        // window.location.reload();
+        this.getAll();
       });
     } else {
-      this.service.putDatos(form.value).subscribe((res) => {
+      this.service.putDatos(this.simpleForm.value).subscribe((res) => {
         window.alert('Se Actualizo Correctamente');
+        this.getAll();
       });
     }
   }
 
   onEdit(inv: DatosInventario) {
-    this.service.selectInventario = inv;
+    this.simpleForm.patchValue(inv)
   }
 
   onDelete(_id: string) {
@@ -75,19 +76,24 @@ export class AdminComponent implements OnInit {
       });
     }
   }
-  resetForm(form?: NgForm) {
-    if (form) form.reset();
-    this.service.selectInventario = {
-      id: '',
-      nombre: '',
-      precio: null,
-      marca: ''
-    };
+  resetForm(){
+    this.simpleForm.reset(
+      {_id: 0}
+    );
   }
 
   getAll() {
     let resp = this.service.getDatosList();
     resp.subscribe((res) => (this.dataSource.data = res as DatosInventario[]));
+  }
+
+  crearFormulario(){
+    return new FormGroup({
+      _id      : new FormControl(0),
+      nombre  : new FormControl(''),
+      precio  : new FormControl(''),
+      marca   : new FormControl('')
+    })
   }
 
 }

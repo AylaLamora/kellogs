@@ -1,5 +1,5 @@
 export class DatosInventario{
-    id: String;
+    _id: String;
     nombre: String;
     precio:  Number;
     marca :  String;
