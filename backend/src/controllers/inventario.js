@@ -4,25 +4,10 @@ let ObjectId = require('mongoose').Types.ObjectId;
 let inventario  = require('../models/inventario');
 
 router.post('/', async (req, res) => {
-
     let inventarioModel = new inventario ({
         nombre:req.body.nombre,     
-        sexo:req.body.sexo,       
-        direccion:req.body.direccion,  
-        estadocivil:req.body.estadocivil,
-        salud:req.body.salud,      
-        edad:req.body.edad,       
-        date:req.body.date,       
-        diabetes:req.body.diabetes,   
-        hiper:req.body.hiper,      
-        asma:req.body.asma,       
-        cardiaco:req.body.cardiaco,   
-        tos:req.body.tos,        
-        cabeza:req.body.cabeza,     
-        olfato:req.body.olfato,     
-        garganta:req.body.garganta,   
-        muscular:req.body.muscular,   
-        gusto:req.body.gusto,      
+        precio:req.body.precio,  
+        marca:req.body.marca,      
     });
 
     
@@ -39,22 +24,8 @@ router.put('/:id', (req, res) => {
 
         let inventarioModel =  ({
             nombre:req.body.nombre,     
-            sexo:req.body.sexo,       
-            direccion:req.body.direccion,  
-            estadocivil:req.body.estadocivil,
-            salud:req.body.salud,      
-            edad:req.body.edad,       
-            date:req.body.date,       
-            diabetes:req.body.diabetes,   
-            hiper:req.body.hiper,      
-            asma:req.body.asma,       
-            cardiaco:req.body.cardiaco,   
-            tos:req.body.tos,        
-            cabeza:req.body.cabeza,     
-            olfato:req.body.olfato,     
-            garganta:req.body.garganta,   
-            muscular:req.body.muscular,   
-            gusto:req.body.gusto, 
+            precio:req.body.precio,  
+            marca:req.body.marca,      
         });
 
     let ID = req.params.id;

@@ -30,6 +30,7 @@ export class InventarioService {
   putDatos(inv: DatosInventario) {
     return this.http.put(this.URL + `/${inv.id}`, inv);
   }
+  
   deleteDato(id: string) {
     return this.http.delete(this.URL + `/${id}`);
   }

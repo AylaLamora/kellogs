@@ -1,4 +1,7 @@
 export class DatosInventario{
-    id: number;
-    atrtibutre: string;
+    id: String;
+    nombre: String;
+    precio:  Number;
+    marca :  String;
+ 
 }
