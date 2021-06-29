@@ -14,6 +14,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
+import { NoticiasComponent } from './components/noticias/noticias.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MaterialModule } from './material.module';
     FooterComponent,
     ConocenosComponent,
     RegistroComponent,
-    AdminComponent
+    AdminComponent,
+    NoticiasComponent
   ],
   imports: [
     BrowserModule,
